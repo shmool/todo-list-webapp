@@ -1,0 +1,33 @@
+<!-- ng-controller="editTaskController as editTask" -->
+
+<div class="modal-header">
+    <h3 class="modal-title">{{editTaskCtrl.modalText.title}}</h3>
+</div>
+<div class="modal-body">
+    <div class="form-group">
+        <input type="text"
+               name="taskTitle"
+               ng-model="editTaskCtrl.task.title"
+               class="form-control"
+               placeholder="Title"
+               ng-minlength="3"
+               required>
+
+        <div class="form-group">
+            <textarea rows="6"
+                      name="taskDescription"
+                      ng-model="editTaskCtrl.task.description"
+                      class="form-control"
+                      placeholder="Description"
+                      required>
+            </textarea>
+        </div>
+</div>
+<div class="modal-footer">
+    <button class="btn btn-primary" ng-click="editTaskCtrl.ok()">
+        {{editTaskCtrl.modalText.ok}}
+    </button>
+    <button class="btn btn-warning" ng-click="editTaskCtrl.cancel()">Cancel</button>
+</div>
+
+</div>

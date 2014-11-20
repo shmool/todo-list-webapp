@@ -1,0 +1,85 @@
+<div class="col-lg-7" ng-controller="listController as list">
+    <form class="form-group form-inline pull-right">
+        <div class="input-group">
+            <div class="input-group-addon">
+                <span class="glyphicon glyphicon-search"></span>
+            </div>
+            <input type="text"
+                   class="form-control"
+                   ng-model="list.search"
+                   ng-disabled="list.tasks.length <= 0"/>
+
+            <div class="input-group-addon">
+                <button ng-click="list.newTaskModal()">
+                    <span class="glyphicon glyphicon-plus">
+                    </span>
+                </button>
+            </div>
+            <div class="input-group-addon">
+                <button ng-click="list.clearSearch()">
+                    <span class="glyphicon glyphicon-remove">
+                    </span>
+                </button>
+            </div>
+        </div>
+    </form>
+
+    <table class="table table-striped table-bordered">
+        <thead>
+        <tr>
+            <th >Done
+                <button class="pull-right" ng-click="list.toggleHideCompleted()">
+                    <span class="glyphicon"
+                          ng-class="{'glyphicon-eye-open': list.hideCompleted,
+                           'glyphicon-eye-close': !list.hideCompleted}">
+                    </span>
+                </button>
+            </th>
+            <!--<th>Title</th>
+            <th>Description</th>
+            <th>Date</th>
+            <th>Actions</th>-->
+            <th ng-repeat="tableTitle in list.tableTitles | orderBy:'place'"
+                ng-if="!list.getProperties(tableTitle).hide">
+                {{list.getProperties(tableTitle).title}}
+                <button ng-if="list.getProperties(tableTitle).reverse != 'irrelevant'"
+                        class="pull-right btn btn-xs"
+                        ng-click="list.sort(tableTitle.field)"
+                        ng-class="{'btn-primary': list.sortBy === tableTitle.field}">
+                    <span class="glyphicon"
+                          ng-class="{'glyphicon-arrow-up': !list.getProperties(tableTitle).reverse,
+                           'glyphicon-arrow-down': list.getProperties(tableTitle).reverse}">
+                    </span>
+                </button>
+            </th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr ng-repeat="task in list.tasks.list
+        | filter:list.search
+        | orderBy:list.sortBy:list.getProperties(list.sortBy).reverse
+        track by task.title"
+            ng-class="{hideRow: list.hideCompleted && task.completed, trActive:task.completed}"
+            ng-dblclick="list.editTask(task)">
+            <td class="text-center">
+                <input class="input" type="checkbox" ng-model="task.completed" />
+            </td>
+            <td>{{ task.title }}</td>
+            <td>{{ task.description }}</td>
+            <td>{{task.updated | date:'dd-MM-yyyy HH:mm'}}</td>
+            <td>{{task.date | date:'dd-MM-yyyy'}}</td>
+            <td>
+                <div class="btn-group btn-group-sm">
+                    <button class="btn btn-danger" ng-click="list.removeTask(task)">
+                        <span class="glyphicon glyphicon-remove"></span>
+                    </button>
+                    <button class="btn btn-primary" ng-click="list.editTask(task)">
+                        <span class="glyphicon glyphicon-edit"></span>
+                    </button>
+                </div>
+            </td>
+        </tr>
+        </tbody>
+
+    </table>
+</div>

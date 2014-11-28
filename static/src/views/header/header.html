@@ -1,0 +1,57 @@
+<div ng-controller="headerController as header">
+    <h1>Hello!</h1>
+    <button ng-click="header.toggleRightClick()"
+            ng-bind="header.rightClickToggleButtonText"
+            context-menu
+            context-menu-disabled="!header.rightClickContextProperties.enabled"
+            data-target="right-click-toggle">
+    </button>
+    <div class="dropdown position-fixed" id="right-click-toggle">
+        <ul class="dropdown-menu" role="menu">
+            <li>
+                <a class="pointer" role="menuitem" tabindex="1"
+                   ng-click="header.alertRightClickProperties()">
+                    display properties log
+                </a>
+            </li>
+        </ul>
+    </div>
+
+
+    <h3 context-menu
+        context-menu-disabled="!header.rightClickContextProperties.enabled"
+        data-target="right-click-try">
+        Right Click Try
+        {{trytext}}
+    </h3>
+
+
+    <div class="dropdown position-fixed" id="right-click-try">
+        <ul class="dropdown-menu" role="menu">
+            <li>
+                <a class="pointer" role="menuitem" tabindex="1"
+                   ng-click="trytext='- sucess!';">
+                    Right Click works!
+                </a>
+            </li>
+            <li>
+                <a href="https://github.com/ianwalter/ng-context-menu"
+                   role="menuitem"
+                   tabindex="-1">
+                    ng-context-menu on GitHub
+                </a>
+            </li>
+        </ul>
+    </div>
+
+    <div ng-model="showBee" ng-init="showBee=false">
+        <button  ng-click="showBee = !showBee">Bee</button>
+        <div ng-if="showBee" class="important">
+            Try catching and dragging the bee!
+            <sj-bee>
+                <img src="http://images.clipartpanda.com/bumble-20bee-20clip-20art-eiMpMMain.png">
+                BZZZZZ
+            </sj-bee>
+        </div>
+    </div>
+</div>

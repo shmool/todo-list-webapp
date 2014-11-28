@@ -5,7 +5,7 @@ function modalService (modal) {
     var self = this;
     self.modals = {
         editTaskModal: {
-            templateUrl: 'views/editTask/editTask.html',
+            templateUrl: 'src/views/editTask/editTask.html',
             controller: 'editTaskController',
             controllerAs: 'editTaskCtrl',
             size: ''}

@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html ng-app="myModule">
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>Trying Stuff</title>
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="src/main.css" />
+
+    <script src="bower_components/angular/angular.js"></script>
+    <script src="bower_components/angular-route/angular-route.js"></script>
+    <script src="bower_components/angular-bootstrap/ui-bootstrap-tpls.js"></script>
+    <!-- Right-click context menu from https://github.com/ianwalter/ng-context-menu -->
+    <script src="bower_components/ng-context-menu/dist/ng-context-menu.min.js"></script>
+
+    <script src="src/main.js"></script>
+
+    <script src="src/services/properties.js"></script>
+    <script src="src/services/list.js"></script>
+    <script src="src/services/task.js"></script>
+    <script src="src/services/modal.js"></script>
+
+    <script src="src/directives/sj-bee.js"></script>
+
+    <script src="src/views/header/header.js"></script>
+    <script src="src/views/tasksList/tasksList.js"></script>
+    <script src="src/views/sjTableList/sjTableList.js"></script>
+    <script src="src/views/editTask/editTask.js"></script>
+
+    <script src="src/routes.js"></script>
+</head>
+<body>
+
+<div ng-include="'src/views/header/header.html'"></div>
+<div ng-include="'src/views/navigation/navigation.html'"></div>
+<hr />
+<ng-view></ng-view>
+
+</body>
+</html>

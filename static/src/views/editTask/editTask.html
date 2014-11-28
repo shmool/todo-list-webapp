@@ -10,8 +10,8 @@
                ng-model="editTaskCtrl.task.title"
                class="form-control"
                placeholder="Title"
-               ng-minlength="3"
                required>
+        {{editTaskCtrl.titleText}}
 
         <div class="form-group">
             <textarea rows="6"
@@ -22,6 +22,7 @@
                       required>
             </textarea>
         </div>
+
 </div>
 <div class="modal-footer">
     <button class="btn btn-primary" ng-click="editTaskCtrl.ok()">

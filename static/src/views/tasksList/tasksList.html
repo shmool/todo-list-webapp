@@ -16,10 +16,24 @@
                 </button>
             </div>
             <div class="input-group-addon">
-                <button ng-click="list.clearSearch()">
+                <button ng-click="list.clearSearch()"
+                        context-menu
+                        context-menu-disabled="!list.rightClickContextProperties.enabled"
+                        data-target="clear-search-context">
                     <span class="glyphicon glyphicon-remove">
                     </span>
                 </button>
+                <!--TODO context menu is displayed behind input box-->
+                <div class="dropdown position-fixed" id="clear-search-context">
+                    <ul class="dropdown-menu" role="menu">
+                        <li>
+                            <a class="pointer" role="menuitem" tabindex="1"
+                               ng-click="list.toggleAutoClearSearch()"
+                               ng-bind="list.getToggleAutoClearSearchText()">
+                            </a>
+                        </li>
+                    </ul>
+                </div>
             </div>
         </div>
     </form>
@@ -58,7 +72,7 @@
         <tr ng-repeat="task in list.tasks.list
         | filter:list.search
         | orderBy:list.sortBy:list.getProperties(list.sortBy).reverse
-        track by task.title"
+        track by task.date"
             ng-class="{hideRow: list.hideCompleted && task.completed, trActive:task.completed}"
             ng-dblclick="list.editTask(task)">
             <td class="text-center">

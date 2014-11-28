@@ -22,3 +22,17 @@ form.newTaskForm input.ng-invalid,
 form.newTaskForm textarea.ng-invalid {
     border-color: red;
 }
+
+.position-fixed {
+    position: fixed;
+}
+
+.important {
+    color: orangered;
+}
+
+/* I don't know how I did this, but the bee actually changes its size! */
+sj-bee img {
+    height: 10%;
+    width: 10%;
+}
